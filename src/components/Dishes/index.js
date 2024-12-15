@@ -21,13 +21,16 @@ class Dishes extends Component {
 
   getItemsList = activeCategory => {
     const {menuList} = this.state
-    let itemsList = []
-    for (let eachItems of menuList) {
-      if (eachItems.menu_category === activeCategory) {
-        itemsList = eachItems.category_dishes
-        break
-      }
+    const itemsList = []
+
+    const filteredList = menuList.filter(
+      eachItem => eachItem.menu_category === activeCategory,
+    )
+    if (filteredList.length > 0) {
+      const dishes = filteredList[0].category_dishes
+      return dishes
     }
+
     return itemsList
   }
 

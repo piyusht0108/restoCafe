@@ -33,7 +33,6 @@ class DishItems extends Component {
 
   render() {
     const {details} = this.props
-    console.log(details)
     const isCustomizationAvailable = details.addonCat.length >= 1
     const {quantity} = this.state
     const dishTypeImgUrl =

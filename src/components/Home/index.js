@@ -25,7 +25,6 @@ class Home extends Component {
     }
     const response = await fetch(apiUrl, options)
     const data = await response.json()
-    console.log(data)
     const tableMenuList = data[0].table_menu_list
     const restaurantDetails = data[0]
     const menuCategory = tableMenuList.map(eachItem => eachItem.menu_category)
@@ -72,9 +71,12 @@ class Home extends Component {
   }
 
   render() {
-    const {categoryList, activeCategory, restaurantDetails, cartItems} =
-      this.state
-    console.log(cartItems)
+    const {
+      categoryList,
+      activeCategory,
+      restaurantDetails,
+      cartItems,
+    } = this.state
     return (
       <RestroContext.Provider
         value={{
