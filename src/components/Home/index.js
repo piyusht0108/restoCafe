@@ -72,11 +72,14 @@ class Home extends Component {
 
   render() {
     const {
+      name,
+      data,
       categoryList,
       activeCategory,
       restaurantDetails,
       cartItems,
     } = this.state
+    console.log(name, data)
     return (
       <RestroContext.Provider
         value={{
