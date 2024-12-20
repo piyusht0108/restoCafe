@@ -1,0 +1,281 @@
+.dish-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: 1px solid Grey;
+  border-radius: 10px;
+  padding: 10px;
+  width: 90%;
+  margin-bottom: 5px;
+  background-color: #ffffff;
+}
+
+.dish-image {
+  height: 200px;
+  width: 200px;
+}
+
+@media (max-width: 576px) {
+  .dish-image {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.dish-name {
+  font-size: 22px;
+  font-family: 'Roboto';
+  font-weight: 600;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+@media (max-width: 575px) {
+  .dish-name {
+    font-size: 14px;
+    font-family: 'Roboto';
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+}
+
+.dish-price {
+  font-size: 15px;
+  font-family: 'Roboto';
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+@media (max-width: 575px) {
+  .dish-price {
+    font-size: 10px;
+    font-family: 'Roboto';
+    margin-top: 8px;
+  }
+}
+
+.dish-description {
+  font-size: 15px;
+  font-family: 'Roboto';
+  color: Grey;
+  margin-top: 10px;
+}
+
+@media (max-width: 575px) {
+  .dish-description {
+    font-size: 10px;
+    font-family: 'Roboto';
+    color: Grey;
+    margin-top: 8px;
+    width: 100px;
+  }
+}
+
+.dish-availability {
+  color: Red;
+  font-size: 15px;
+  font-family: 'Roboto';
+}
+
+@media (max-width: 575px) {
+  .dish-availability {
+    color: Red;
+    font-size: 10px;
+    font-family: 'Roboto';
+  }
+}
+
+.dish-quantity-container {
+  background-color: Green;
+  border-radius: 15px;
+  width: 150px;
+  height: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@media (max-width: 575px) {
+  .dish-quantity-container {
+    background-color: Green;
+    border-radius: 10px;
+    width: 100px;
+    height: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.dish-quantity-button {
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.dish-quantity {
+  color: #ffffff;
+  font-size: 15px;
+  font-family: 'Roboto';
+}
+
+.dish-details-container {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+}
+
+@media (max-width: 575px) {
+  .dish-details-container {
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+  }
+}
+
+.dish-calories {
+  color: Orange;
+  font-size: 15px;
+  font-family: 'Roboto';
+  margin: 0;
+  margin-right: 2px;
+}
+
+@media (max-width: 575px) {
+  .dish-calories {
+    font-size: 10px;
+    color: Orange;
+  }
+}
+
+.dish-customization-text {
+  color: Blue;
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: 'Roboto';
+  text-decoration: none;
+}
+
+@media (max-width: 575px) {
+  .dish-customization-text {
+    font-size: 12px;
+  }
+}
+
+.dish-type-details-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.veg-dish-symbol {
+  height: 30px;
+  width: 30px;
+  border: 2px solid;
+  border-color: #00923f;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 575px) {
+  .veg-dish-symbol {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.non-veg-dish-symbol {
+  height: 30px;
+  width: 30px;
+  border: 2px solid;
+  border-color: #92282a;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 575px) {
+  .non-veg-dish-symbol {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.veg-dot {
+  height: 15px;
+  width: 15px;
+  background-color: #00923f;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #00923f;
+}
+
+@media (max-width: 575px) {
+  .veg-dot {
+    height: 10px;
+    width: 10px;
+  }
+}
+
+.non-veg-dot {
+  height: 15px;
+  width: 15px;
+  background-color: #92282a;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #92282a;
+}
+
+@media (max-width: 575px) {
+  .non-veg-dot {
+    height: 10px;
+    width: 10px;
+  }
+}
+
+.price-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.calories-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: Orange;
+  font-size: 15px;
+  font-family: 'Roboto';
+  margin: 0;
+  align-self: center;
+}
+
+@media (max-width: 575px) {
+  .dish-calories {
+    font-size: 10px;
+    color: Orange;
+  }
+  .calories-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 10px;
+    color: Orange;
+    font-family: 'Roboto';
+    margin: 0;
+  }
+}

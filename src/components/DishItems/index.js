@@ -1,21 +1,7 @@
 import {Component} from 'react'
 import RestroContext from '../RestroContext'
-import {
-  DishListItem,
-  DishImage,
-  DishName,
-  DishPrice,
-  DishDescription,
-  DishAvailability,
-  DishQuantityContainer,
-  DishQuantityButton,
-  DishQuantity,
-  DishDetailsContainer,
-  DishCalories,
-  DishCustomizationText,
-  DishTypeImage,
-  DishTypeDetailsContainer,
-} from './styledComponents'
+
+import './index.css'
 
 class DishItems extends Component {
   state = {quantity: 0}
@@ -33,67 +19,93 @@ class DishItems extends Component {
 
   render() {
     const {details} = this.props
-    const isCustomizationAvailable = details.addonCat.length >= 1
+    const {
+      addOnCat,
+      dishAvailability,
+      dishType,
+      dishCalories,
+      dishCurrency,
+      dishDescription,
+      dishId,
+      dishImage,
+      dishName,
+      dishPrice,
+    } = details
+    const isCustomizationAvailable = addOnCat.length >= 1
     const {quantity} = this.state
-    const dishTypeImgUrl =
-      details.dish_Type === 2
-        ? 'https://res.cloudinary.com/dj63dzhgu/image/upload/v1734202984/Veg_symbol.svg_sxkqef.png'
-        : 'https://res.cloudinary.com/dj63dzhgu/image/upload/v1734203482/non_veg_symbol_nm2ule.png'
     return (
       <RestroContext.Consumer>
         {value => {
           const {addToCartItem, removeFromCartItem} = value
           const onClickIncrement = () => {
-            addToCartItem(details.dish_id, details, quantity)
+            addToCartItem(dishId, details, quantity)
             this.increaseQuantity()
           }
           const onClickDecrement = () => {
-            removeFromCartItem(details.dish_id, details, quantity)
+            removeFromCartItem(dishId, details, quantity)
             this.decreaseQuantity()
           }
+          const dishsymbolClassName =
+            dishType === 2 ? 'veg-dish-symbol' : 'non-veg-dish-symbol'
+          const dishDotClassName = dishType === 2 ? 'veg-dot' : 'non-veg-dot'
           return (
-            <DishListItem>
-              <DishTypeDetailsContainer>
-                <DishTypeImage src={dishTypeImgUrl} />
-                <DishDetailsContainer>
-                  <DishName>{details.dish_name}</DishName>
-                  <DishPrice>
-                    {details.dish_currency} {details.dish_price}
-                  </DishPrice>
-                  <DishDescription>{details.dish_description}</DishDescription>
-                  {details.dish_Availability ? (
-                    <DishQuantityContainer>
-                      <DishQuantityButton
+            <li className="dish-list-item">
+              <div className="dish-type-details-container">
+                <div className={dishsymbolClassName}>
+                  <div className={dishDotClassName}>
+                    <span>.</span>
+                  </div>
+                </div>
+                <div className="dish-details-container">
+                  <h1 className="dish-name">{dishName}</h1>
+                  <div className="price-container">
+                    <p className="dish-price">
+                      {dishCurrency} {dishPrice}
+                    </p>
+                  </div>
+                  <p className="dish-description">{dishDescription}</p>
+                  {dishAvailability ? (
+                    <div className="dish-quantity-container">
+                      <button
+                        className="dish-quantity-button"
                         type="button"
                         onClick={onClickDecrement}
                       >
                         -
-                      </DishQuantityButton>
-                      <DishQuantity>{quantity}</DishQuantity>
-                      <DishQuantityButton
+                      </button>
+                      <p className="dish-quantity">{quantity}</p>
+                      <button
+                        className="dish-quantity-button"
                         type="button"
                         onClick={onClickIncrement}
                       >
                         +
-                      </DishQuantityButton>
-                    </DishQuantityContainer>
+                      </button>
+                    </div>
                   ) : (
-                    <DishAvailability>Not Available</DishAvailability>
+                    <p className="dish-availability">Not Available</p>
                   )}
                   {isCustomizationAvailable ? (
-                    <DishCustomizationText href={details.nexturl}>
+                    <a
+                      className="dish-customization-text"
+                      href={details.nexturl}
+                    >
                       Customizations available
-                    </DishCustomizationText>
+                    </a>
                   ) : null}
-                </DishDetailsContainer>
-              </DishTypeDetailsContainer>
-              <div>
-                <DishCalories>{details.dish_calories} calories</DishCalories>
+                </div>
+              </div>
+              <div className="calories-container">
+                <p className="dish-calories">{dishCalories} calories</p>
               </div>
               <div>
-                <DishImage src={details.dish_image} alt={details.dish_name} />
+                <img
+                  className="dish-image"
+                  src={dishImage}
+                  alt={details.dish_name}
+                />
               </div>
-            </DishListItem>
+            </li>
           )
         }}
       </RestroContext.Consumer>
