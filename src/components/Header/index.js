@@ -1,14 +1,6 @@
 import {Component} from 'react'
 import RestroContext from '../RestroContext'
-import {
-  HeaderContainer,
-  CartContainer,
-  HeaderHeading,
-  HeaderPara,
-  CartItemsContainer,
-  ItemLengthContainer,
-  CartLength,
-} from './styledComponents'
+import './index.css'
 
 class Header extends Component {
   render() {
@@ -17,17 +9,19 @@ class Header extends Component {
         {value => {
           const {restaurantDetails, cartItems} = value
           return (
-            <HeaderContainer>
-              <HeaderHeading>{restaurantDetails.restaurant_name}</HeaderHeading>
-              <CartContainer>
-                <HeaderPara>My orders</HeaderPara>
-                <CartItemsContainer>
-                  <ItemLengthContainer>
-                    <CartLength>{cartItems.length}</CartLength>
-                  </ItemLengthContainer>
-                </CartItemsContainer>
-              </CartContainer>
-            </HeaderContainer>
+            <div className="HeaderContainer">
+              <h1 className="HeaderHeading">
+                {restaurantDetails.restaurant_name}
+              </h1>
+              <div className="CartContainer">
+                <p className="HeaderPara">My orders</p>
+                <div className="CartItemsContainer">
+                  <div className="ItemLengthContainer">
+                    <p className="CartLength">{cartItems.length}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           )
         }}
       </RestroContext.Consumer>

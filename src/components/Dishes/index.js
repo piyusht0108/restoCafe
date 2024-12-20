@@ -1,7 +1,6 @@
 import {Component} from 'react'
 import RestroContext from '../RestroContext'
 import DishItems from '../DishItems'
-import './index.css'
 
 class Dishes extends Component {
   state = {menuList: []}
@@ -11,11 +10,8 @@ class Dishes extends Component {
   }
 
   getItems = async () => {
-    const apiUrl =
-      'https://apis2.ccbp.in/restaurant-app/restaurant-menu-list-details'
-    const response = await fetch(apiUrl)
-    const data = await response.json()
-    const tableMenuList = data[0].table_menu_list
+    const {restaurantDetails} = this.props
+    const tableMenuList = restaurantDetails.table_menu_list
     this.setState({menuList: tableMenuList})
   }
 
@@ -28,7 +24,19 @@ class Dishes extends Component {
     )
     if (filteredList.length > 0) {
       const dishes = filteredList[0].category_dishes
-      return dishes
+      const filteredDishes = dishes.map(eachItem => ({
+        addOnCat: eachItem.addonCat,
+        dishAvailability: eachItem.dish_Availability,
+        dishType: eachItem.dish_Type,
+        dishCalories: eachItem.dish_calories,
+        dishCurrency: eachItem.dish_currency,
+        dishDescription: eachItem.dish_description,
+        dishId: eachItem.dish_id,
+        dishImage: eachItem.dish_image,
+        dishName: eachItem.dish_name,
+        dishPrice: eachItem.dish_price,
+      }))
+      return filteredDishes
     }
 
     return itemsList
@@ -44,7 +52,7 @@ class Dishes extends Component {
             <div>
               <ul className="dish-list">
                 {itemList.map(eachItem => (
-                  <DishItems details={eachItem} key={eachItem.dish_id} />
+                  <DishItems details={eachItem} key={eachItem.dishId} />
                 ))}
               </ul>
             </div>

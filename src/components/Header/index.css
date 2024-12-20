@@ -1,49 +1,55 @@
-import styled from 'styled-components'
-
-export const HeaderContainer = styled.div`
+.HeaderContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
   font-family: 'Roboto';
-`
+  background-color: #ffffff;
+  padding: 20px;
+}
 
-export const CartContainer = styled.div`
+.CartContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 130px;
   font-size: 20px;
-`
+}
 
-export const HeaderHeading = styled.h1`
+.HeaderHeading {
   font-size: 25px;
   font-family: 'Roboto';
-  @media (max-width: 575px) {
+  margin: 0;
+}
+
+@media (max-width: 575px) {
+  .HeaderHeading {
     font-size: 20px;
   }
-`
+}
 
-export const HeaderPara = styled.p`
+.HeaderPara {
   font-size: 20px;
   font-family: 'Roboto';
-  @media (max-width: 575px) {
+}
+
+@media (max-width: 575px) {
+  .HeaderPara {
     font-size: 15px;
   }
-`
+}
 
-export const CartItemsContainer = styled.div`
+.CartItemsContainer {
   background-image: url('https://res.cloudinary.com/dj63dzhgu/image/upload/v1734198981/Cart_zafq3c.jpg');
   background-size: cover;
   height: 30px;
   width: 30px;
   display: flex;
   justify-content: flex-end;
-`
+}
 
-export const ItemLengthContainer = styled.div`
+.ItemLengthContainer {
   background-color: Orange;
   border-radius: 50%;
   height: 15px;
@@ -52,12 +58,15 @@ export const ItemLengthContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+}
 
-export const CartLength = styled.p`
+.CartLength {
   font-size: 10px;
   font-family: 'Roboto';
-  @media (max-width: 575px) {
+}
+
+@media (max-width: 575px) {
+  .CartLength {
     font-size: 6px;
   }
-`
+}

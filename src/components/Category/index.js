@@ -1,10 +1,7 @@
 import {Component} from 'react'
 import RestroContext from '../RestroContext'
-import {
-  CategoryContainer,
-  CategoryItem,
-  CategoryButton,
-} from './styledComponents'
+
+import './index.css'
 
 class Category extends Component {
   render() {
@@ -15,26 +12,28 @@ class Category extends Component {
           const {changeCategory} = value
           return (
             <div>
-              <CategoryContainer>
+              <div className="category-container">
                 {categoryList.map(eachItem => {
                   const onClickItem = () => {
                     changeCategory(eachItem)
                   }
+                  const buttonClassName =
+                    eachItem === activeCategory
+                      ? 'active-category-button'
+                      : 'category-button'
                   return (
-                    <CategoryItem key={eachItem}>
-                      <CategoryButton
-                        isactive={
-                          activeCategory === eachItem ? 'true' : 'false'
-                        }
+                    <li className="category-item" key={eachItem}>
+                      <button
+                        className={buttonClassName}
                         onClick={onClickItem}
                         type="button"
                       >
                         {eachItem}
-                      </CategoryButton>
-                    </CategoryItem>
+                      </button>
+                    </li>
                   )
                 })}
-              </CategoryContainer>
+              </div>
             </div>
           )
         }}
