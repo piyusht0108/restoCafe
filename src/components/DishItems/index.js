@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import RestroContext from '../RestroContext'
+import CartContext from '../RestroContext'
 
 import './index.css'
 
@@ -34,20 +34,25 @@ class DishItems extends Component {
     const isCustomizationAvailable = addOnCat.length >= 1
     const {quantity} = this.state
     return (
-      <RestroContext.Consumer>
+      <CartContext.Consumer>
         {value => {
-          const {addToCartItem, removeFromCartItem} = value
+          // prettier-ignore
+          const {incrementCartItemQuantity, decrementCartItemQuantity, addCartItem} =
+            value
           const onClickIncrement = () => {
-            addToCartItem(dishId, details, quantity)
+            incrementCartItemQuantity(dishId, details, quantity)
             this.increaseQuantity()
           }
           const onClickDecrement = () => {
-            removeFromCartItem(dishId, details, quantity)
+            decrementCartItemQuantity(dishId, details, quantity)
             this.decreaseQuantity()
           }
           const dishsymbolClassName =
             dishType === 2 ? 'veg-dish-symbol' : 'non-veg-dish-symbol'
           const dishDotClassName = dishType === 2 ? 'veg-dot' : 'non-veg-dot'
+          const onClickAddToCart = () => {
+            addCartItem({...details, quantity})
+          }
           return (
             <li className="dish-list-item">
               <div className="dish-type-details-container">
@@ -65,22 +70,33 @@ class DishItems extends Component {
                   </div>
                   <p className="dish-description">{dishDescription}</p>
                   {dishAvailability ? (
-                    <div className="dish-quantity-container">
-                      <button
-                        className="dish-quantity-button"
-                        type="button"
-                        onClick={onClickDecrement}
-                      >
-                        -
-                      </button>
-                      <p className="dish-quantity">{quantity}</p>
-                      <button
-                        className="dish-quantity-button"
-                        type="button"
-                        onClick={onClickIncrement}
-                      >
-                        +
-                      </button>
+                    <div className="quantity-addCart-container">
+                      <div className="dish-quantity-container">
+                        <button
+                          className="dish-quantity-button"
+                          type="button"
+                          onClick={onClickDecrement}
+                        >
+                          -
+                        </button>
+                        <p className="dish-quantity">{quantity}</p>
+                        <button
+                          className="dish-quantity-button"
+                          type="button"
+                          onClick={onClickIncrement}
+                        >
+                          +
+                        </button>
+                      </div>
+                      {quantity > 0 ? (
+                        <button
+                          type="button"
+                          className="add-to-cart-btn"
+                          onClick={onClickAddToCart}
+                        >
+                          ADD TO CART
+                        </button>
+                      ) : null}
                     </div>
                   ) : (
                     <p className="dish-availability">Not Available</p>
@@ -108,7 +124,7 @@ class DishItems extends Component {
             </li>
           )
         }}
-      </RestroContext.Consumer>
+      </CartContext.Consumer>
     )
   }
 }

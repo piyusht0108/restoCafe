@@ -6,6 +6,8 @@
   font-family: 'Roboto';
   background-color: #ffffff;
   padding: 20px;
+  max-width: 100vw;
+  width: 100vw;
 }
 
 .CartContainer {
@@ -13,7 +15,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 130px;
   font-size: 20px;
 }
 
@@ -36,28 +37,19 @@
 
 @media (max-width: 575px) {
   .HeaderPara {
-    font-size: 15px;
+    display: none;
   }
 }
 
 .CartItemsContainer {
-  background-image: url('https://res.cloudinary.com/dj63dzhgu/image/upload/v1734198981/Cart_zafq3c.jpg');
-  background-size: cover;
   height: 30px;
-  width: 30px;
+  width: 50px;
   display: flex;
   justify-content: flex-end;
-}
-
-.ItemLengthContainer {
-  background-color: Orange;
-  border-radius: 50%;
-  height: 15px;
-  width: 15px;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  outline: none;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
 }
 
 .CartLength {
@@ -69,4 +61,64 @@
   .CartLength {
     font-size: 6px;
   }
+}
+
+.nav-link {
+  color: #000000;
+  text-decoration: none;
+}
+
+.logout-button {
+  background-color: lightblue;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+  width: 120px;
+  height: 38px;
+  outline: none;
+  cursor: pointer;
+  border: 0;
+  margin: 10px;
+  font-family: 'Roboto';
+}
+
+@media screen and (max-width: 768px) {
+  .logout-button {
+    display: none;
+  }
+}
+
+.mobile-btn {
+  border: none;
+  padding: 0px;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+@media screen and (min-width: 768px) {
+  .mobile-btn {
+    display: none;
+  }
+}
+
+.nav-bar-img {
+  width: 24px;
+}
+
+.cart-img {
+  position: absolute;
+  width: 28px;
+}
+
+.ItemLengthContainer {
+  background-color: Orange;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }

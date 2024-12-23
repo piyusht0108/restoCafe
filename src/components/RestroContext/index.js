@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RestroContext = React.createContext({
+const CartContext = React.createContext({
   activeCategory: '',
   categoryList: [],
   cartItems: [],
@@ -8,4 +8,4 @@ const RestroContext = React.createContext({
   changeCategory: () => {},
 })
 
-export default RestroContext
+export default CartContext

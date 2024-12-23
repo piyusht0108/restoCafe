@@ -279,3 +279,40 @@
     margin: 0;
   }
 }
+
+.quantity-addCart-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-to-cart-btn {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 14px;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  margin-left: 20px;
+  height: 32px;
+  width: 120px;
+}
+
+@media (max-width: 575px) {
+  .add-to-cart-btn {
+    color: #ffffff;
+    font-family: 'Roboto';
+    font-size: 8px;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    margin-left: 20px;
+    height: 30px;
+    width: 60px;
+  }
+}

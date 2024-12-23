@@ -1,25 +1,14 @@
 import {Component} from 'react'
-import RestroContext from '../RestroContext'
+
 import DishItems from '../DishItems'
 
 class Dishes extends Component {
-  state = {menuList: []}
-
-  componentDidMount() {
-    this.getItems()
-  }
-
-  getItems = async () => {
-    const {restaurantDetails} = this.props
+  getItemsList = (activeCategory, restaurantDetails) => {
     const tableMenuList = restaurantDetails.table_menu_list
-    this.setState({menuList: tableMenuList})
-  }
 
-  getItemsList = activeCategory => {
-    const {menuList} = this.state
     const itemsList = []
 
-    const filteredList = menuList.filter(
+    const filteredList = tableMenuList.filter(
       eachItem => eachItem.menu_category === activeCategory,
     )
     if (filteredList.length > 0) {
@@ -35,6 +24,7 @@ class Dishes extends Component {
         dishImage: eachItem.dish_image,
         dishName: eachItem.dish_name,
         dishPrice: eachItem.dish_price,
+        quantity: 0,
       }))
       return filteredDishes
     }
@@ -43,22 +33,16 @@ class Dishes extends Component {
   }
 
   render() {
+    const {activeCategory, restaurantDetails} = this.props
+    const itemList = this.getItemsList(activeCategory, restaurantDetails)
     return (
-      <RestroContext.Consumer>
-        {value => {
-          const {activeCategory} = value
-          const itemList = this.getItemsList(activeCategory)
-          return (
-            <div>
-              <ul className="dish-list">
-                {itemList.map(eachItem => (
-                  <DishItems details={eachItem} key={eachItem.dishId} />
-                ))}
-              </ul>
-            </div>
-          )
-        }}
-      </RestroContext.Consumer>
+      <div>
+        <ul className="dish-list">
+          {itemList.map(eachItem => (
+            <DishItems details={eachItem} key={eachItem.dishId} />
+          ))}
+        </ul>
+      </div>
     )
   }
 }

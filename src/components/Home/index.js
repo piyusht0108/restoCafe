@@ -2,7 +2,6 @@ import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import Category from '../Category'
-import RestroContext from '../RestroContext'
 import Dishes from '../Dishes'
 import './index.css'
 
@@ -15,11 +14,9 @@ const apiStatusConstants = {
 
 class Home extends Component {
   state = {
-    categoryList: [],
-    activeCategory: '',
-    cartItems: [],
-    restaurantDetails: {},
     apiStatus: apiStatusConstants.initial,
+    activeCategory: '',
+    restaurantDetails: {},
   }
 
   componentDidMount() {
@@ -36,12 +33,10 @@ class Home extends Component {
     const response = await fetch(dishesApiUrl, options)
     const data = await response.json()
     if (response.ok === true) {
-      console.log(data)
       const tableMenuList = data[0].table_menu_list
       const restaurantDetails = data[0]
       const menuCategory = tableMenuList.map(eachItem => eachItem.menu_category)
       this.setState({
-        categoryList: menuCategory,
         activeCategory: menuCategory[0],
         restaurantDetails,
         apiStatus: apiStatusConstants.success,
@@ -55,70 +50,26 @@ class Home extends Component {
     this.setState({activeCategory: selectedCategory})
   }
 
-  addToCartItem = (id, item, quantity) => {
-    const {cartItems} = this.state
-    const itemList = cartItems.filter(eachItem => eachItem.dish_id === id)
-
-    if (itemList.length === 0) {
-      const newQuantity = quantity + 1
-      this.setState(prevState => ({
-        cartItems: [...prevState.cartItems, {...item, quantity: newQuantity}],
-      }))
-    } else {
-      const filteredList = cartItems.filter(eachItem => eachItem.dish_id !== id)
-      const newQuantity = quantity + 1
-      this.setState({
-        cartItems: [...filteredList, {...item, quantity: newQuantity}],
-      })
-    }
-  }
-
-  removeFromCartItem = (id, item, quantity) => {
-    const {cartItems} = this.state
-    const filteredList = cartItems.filter(eachItem => eachItem.dish_id !== id)
-    if (quantity === 1) {
-      this.setState({cartItems: [...filteredList]})
-    } else {
-      const newQuantity = quantity - 1
-      this.setState({
-        cartItems: [...filteredList, {...item, quantity: newQuantity}],
-      })
-    }
-  }
-
   renderSuccessView = () => {
-    const {
-      categoryList,
-      activeCategory,
-      restaurantDetails,
-      cartItems,
-    } = this.state
+    const {activeCategory, restaurantDetails} = this.state
     return (
-      <RestroContext.Provider
-        value={{
-          categoryList,
-          restaurantDetails,
-          activeCategory,
-          cartItems,
-          addToCartItem: this.addToCartItem,
-          removeFromCartItem: this.removeFromCartItem,
-          changeCategory: this.onChangeCategory,
-        }}
-      >
-        <div className="HomePage">
-          <Header />
-          <Category
-            categoryList={categoryList}
-            activeCategory={activeCategory}
-          />
-          <Dishes restaurantDetails={restaurantDetails} />
-        </div>
-      </RestroContext.Provider>
+      <div className="HomePage">
+        <Header />
+        <Category
+          activeCategory={activeCategory}
+          restaurantDetails={restaurantDetails}
+          onChangeCategory={this.onChangeCategory}
+        />
+        <Dishes
+          activeCategory={activeCategory}
+          restaurantDetails={restaurantDetails}
+        />
+      </div>
     )
   }
 
   renderLoaderView = () => (
-    <div>
+    <div className="loader-container">
       <Loader height="80" width="80" color="#4fa94d" type="TailSpin" />
     </div>
   )
